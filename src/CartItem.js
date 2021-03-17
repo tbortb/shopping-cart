@@ -1,4 +1,4 @@
-const CartItem = ({ product, quantity}) => {
+const CartItem = ({product, quantity}) => {
     return (<div className="list-group-item">
     <div className="row">
       <div className="col-md-8">{product.name}</div>

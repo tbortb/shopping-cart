@@ -1,6 +1,6 @@
 const CartFooter = ({copyright}) => {
-    return (<nav className="navbar navbar-dark bg-dark">
+    return <nav className="navbar navbar-dark bg-dark">
     <a className="navbar-brand" href="#">&copy; {copyright}</a>
-  </nav>)
+  </nav>
 }
 export default CartFooter;
