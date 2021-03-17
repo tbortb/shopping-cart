@@ -3,7 +3,6 @@ import CartFooter from './CartFooter';
 import CartHeader from './CartHeader';
 import CartItems from './CartItems';
 import AddItem from './AddItem';
-import CartTotal from './CartTotal';
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -48,7 +47,7 @@ class App extends Component {
       <div>
         <CartHeader />
         <CartItems items={this.state.cartItemsList} />
-        <CartTotal items={this.state.cartItemsList} />
+        
         <AddItem products={this.state.products} submitFunc={this.addItemToList} />
         <CartFooter copyright="2021" />
       </div>

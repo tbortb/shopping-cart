@@ -1,4 +1,5 @@
 import CartItem from './CartItem'
+import CartTotal from './CartTotal';
 
 const CartItems = ({ items }) => {
     return (
@@ -14,6 +15,7 @@ const CartItems = ({ items }) => {
                 </div>
                 {items.map(item => <CartItem key={item.id} product={item.product} quantity={item.quantity} />)}
             </div>
+            <CartTotal items={items} />
         </div>
     );
 }
