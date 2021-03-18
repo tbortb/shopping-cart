@@ -25,13 +25,26 @@ class App extends Component {
 
 
   addItemToList = newProduct => {
-    const newListEntry = {};
-    newListEntry.id = this.state.cartItemsList.reduce((max, current) => current.id > max ? current.id : max, 0) + 1;
-    newListEntry.product_id = parseInt(newProduct.productId);
-    newListEntry.quantity = parseInt(newProduct.quantity);
-    this.setState(prevState => ({
+    const postItem = {};
+    postItem.id = this.state.cartItemsList.reduce((max, current) => current.id > max ? current.id : max, 0) + 1;
+    postItem.product_id = parseInt(newProduct.productId);
+    postItem.quantity = parseInt(newProduct.quantity);
+    this.postItem(postItem).then(newListEntry => this.setState(prevState => ({
       cartItemsList: [...prevState.cartItemsList, newListEntry]
-    }));
+    })));
+    
+  }
+
+  async postItem(item) {
+    const response = await fetch('http://localhost:8082/api/items', {
+      method: 'POST',
+      body: JSON.stringify(item),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+    return await response.json();
   }
 
   render = () => {
