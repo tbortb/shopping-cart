@@ -2,11 +2,13 @@ import { Component } from "react";
 class AddItem extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedItem: {
-                productId: props.products[0].id,
-                quantity: 0
-            }
+        this.state = {}
+    }
+
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        return {
+            selectedItem: {...prevState.selectedItem,
+                productId: nextProps.products[0]?.id}
         }
     }
 
@@ -17,7 +19,7 @@ class AddItem extends Component {
 
     onChange = e => {
         const target = e.target.dataset.key;
-        const value = e.target.value;
+        const value = parseInt(e.target.value);
         this.setState(prevState => ({
             selectedItem: {
                 ...prevState.selectedItem,
