@@ -16,11 +16,18 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const cartResp = await fetch("http://localhost:8082/api/items");
-    const cartItemsList = await cartResp.json();
-    const productsResp = await fetch("http://localhost:8082/api/products");
-    const products = await productsResp.json();
+    //Query both APIs asynchronously
+    const cartPromise = this.fetchFromApi("http://localhost:8082/api/items");
+    const productsPromise = this.fetchFromApi("http://localhost:8082/api/products");
+    const cartItemsList = await cartPromise;
+    const products = await productsPromise;
     this.setState(prevState => ({ cartItemsList, products }));
+  }
+
+  async fetchFromApi(host){
+    const resp = await fetch(host);
+    //await resp.json() is not needed here, because the caller needs to handle a promise anyway
+    return resp.json();
   }
 
 
